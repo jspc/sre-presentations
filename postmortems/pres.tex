@@ -1,0 +1,158 @@
+% \documentclass[notes=show,handout]{beamer}
+\documentclass[]{beamer}
+
+\usetheme{metropolis}
+
+\usepackage{graphicx}
+
+\def\subsubsectionname{\translate{Subsubsection}}
+\def\insertsubsubsectionnumber{\arabic{subsubsection}}
+\setbeamertemplate{subsubsection page}
+{
+  \begin{centering}
+    {\usebeamerfont{subsubsection name}\usebeamercolor[fg]{subsubsection name}\subsubsectionname~\insertsubsubsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=4pt,center]{part title}
+      \usebeamerfont{subsubsection title}\insertsubsubsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\def\subsubsectionpage{\usebeamertemplate*{subsubsection page}}
+
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+\AtBeginSubsubsection{\frame{\subsubsectionpage}}
+
+\title[postmortems]{Postmortems}
+\subtitle{Blame free postmortems}
+
+\author[jspc]{James Condron}
+\institute[Beamly]{
+  Beamly \\
+  Site Reliability Team
+}
+
+\date{11th October 2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+
+  \begin{itemize}[<+->]
+  \item Beamly follow the priciple of the \textit{Blame Free Postmortem}
+  \item Less focus on who did what
+  \item More focus on how something did what
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{the postmortem}
+
+  \begin{itemize}[<+->]
+  \item Slack is the source of truth for an incident
+  \item Less focus on who did what
+  \item More focus on how something did what
+  \end{itemize}
+\end{frame}
+
+\section{the postmortem}
+\subsection{actors}
+\begin{frame}
+  \frametitle{the team}
+
+  \begin{itemize}
+  \item The incident team
+    \begin{itemize}
+    \item On call engineer
+    \item Point person
+    \item Engineers involved
+    \item SRE
+    \end{itemize}
+
+  \item Team lead for affected component/site
+  \item Representative of technical management
+    \begin{itemize}
+    \item Head of Department
+    \item VP of Engineering
+    \item CTO
+    \item etc.
+    \end{itemize}
+
+  \item Interested members of the public
+  \end{itemize}
+\end{frame}
+
+\subsection{process}
+\begin{frame}
+  \frametitle{the timeline}
+
+  \begin{itemize}[<+->]
+  \item Slack is the source of truth for an incident
+  \item It includes who did what, when
+  \item Timeline is an attempt to summarise this into table form
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{the diagnosis}
+
+  \begin{itemize}[<+->]
+  \item Is the diagnosis from the timeline correct?
+  \item Where there any assumptions made that need to be noted?
+  \item What could have helped facilitate the diagnosis further?
+    \begin{itemize}
+    \item Are there any process changes necessary?
+    \item Is there anything we could build or buy?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{the fix}
+
+  \begin{itemize}[<+->]
+  \item Is the fix correct?
+  \item Is there anything we could have done to make this fix simpler?
+    \begin{itemize}
+    \item Are there any process changes necessary?
+    \item Is there anything we could build or buy?
+    \end{itemize}
+  \item Is this fix temporary? Can we make it permanent?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{the response}
+
+  \begin{itemize}[<+->]
+  \item Were we alerted to the outage quick enough?
+  \item Were we able to resolve the outage quick enough?
+  \item Is there anything we could do to make these processes quicker?
+  \end{itemize}
+\end{frame}
+
+\section{aftermath}
+\begin{frame}
+  \frametitle{the report}
+
+  \begin{itemize}[<+->]
+  \item An SRE will write the postomortem up
+  \item This is disseminated around the team
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{the tickets}
+
+  \begin{itemize}[<+->]
+  \item An SRE will create tickets based on the postmortem
+  \item These are usuallythe actions agreed upon by the group
+  \end{itemize}
+\end{frame}
+
+\end{document}
