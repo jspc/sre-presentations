@@ -1,0 +1,134 @@
+% \documentclass[notes=show,handout]{beamer}
+\documentclass[]{beamer}
+
+\usetheme{metropolis}
+
+\usepackage{graphicx}
+
+\def\subsubsectionname{\translate{Subsubsection}}
+\def\insertsubsubsectionnumber{\arabic{subsubsection}}
+\setbeamertemplate{subsubsection page}
+{
+  \begin{centering}
+    {\usebeamerfont{subsubsection name}\usebeamercolor[fg]{subsubsection name}\subsubsectionname~\insertsubsubsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=4pt,center]{part title}
+      \usebeamerfont{subsubsection title}\insertsubsubsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\def\subsubsectionpage{\usebeamertemplate*{subsubsection page}}
+
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+\AtBeginSubsubsection{\frame{\subsubsectionpage}}
+
+\title[incidents]{Incident Management}
+\subtitle{How we do it in live}
+
+\author[jspc]{James Condron}
+\institute[Beamly]{
+  Beamly \\
+  Site Reliability Team
+}
+
+\date{11th October 2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Actors}
+
+  \begin{itemize}[<+->]
+  \item On call engineer
+  \item Point Person
+  \item Investigator(s)/ Engineers
+  \item SRE
+  \end{itemize}
+
+\end{frame}
+
+\section{actors}
+\begin{frame}
+  \frametitle{On call engineer}
+
+  \begin{itemize}[<+->]
+  \item Outages are raised in pagerduty to the relevant escalation policy
+  \item Each policy will have an engineer on call always
+  \item Responsibilities:
+
+    \begin{enumerate}
+    \item Acknowledge initial incident(s)
+    \item Ensure interested parties are aware in #incident slack channel
+    \item Announce point person
+
+      \begin{itemize}
+      \item If nobody else is available, oncall is point
+      \item Otherwise discuss with available people and decide
+      \end{itemize}
+
+    \end{enumerate}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Point person}
+
+  \begin{itemize}[<+->]
+  \item The point person runs the incident
+  \item It is \textbf{not} their job to fix the issue, but they may do
+  \item Responsibilities:
+
+    \begin{enumerate}
+    \item Manage paegrduty alerts
+    \item Determine the severity of the issue
+
+      \begin{itemize}
+      \item[serious] Is a site down for all users?
+      \item[medium] Is a site up and serving stale content?
+      \item[trivial] Is there no real operational impact?
+      \end{itemize}
+
+    \item Pull in any engineer necessary to diagnose
+    \item Determine and apply fix
+    \item Ensure SRE team are aware there was an incident
+    \end{enumerate}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Investigator(s)/ Engineers}
+
+  \begin{itemize}[<+->]
+  \item Any engineer is eligible to be pulled into a serious or medium priority outage
+  \item Engineers deep dive into diagnosis and resolution
+  \item Engineers are coordinated by the Point Person via the #incident room
+  \item This room is kept up to date with findings and actions
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{SRE}
+
+  \begin{itemize}[<+->]
+  \item After a serious or medium outage it is an SRE's responsibility to
+    \begin{enumerate}
+    \item Document investigation, diagnosis, and resolution
+    \item Schedule and run a postmortem
+    \item Create tickets around postmortem actions
+    \end{enumerate}
+
+  \end{itemize}
+
+\end{frame}
+
+\end{document}
